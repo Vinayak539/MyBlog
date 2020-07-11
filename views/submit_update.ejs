@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyBlog</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!--font electrolize-->
+  <link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
+    <!-- font: Monoton,Tinos,AL Messiri-->
+  <link href="https://fonts.googleapis.com/css?family=El+Messiri|Monoton|Tinos&display=swap" rel="stylesheet">  
+
+
+<style type="text/css">
+
+section{
+	margin:10% auto;
+    text-align:center;
+}
+
+textarea,input[type="text"]{
+	width:95%;
+	margin:4px auto;
+	border:2px solid black;
+	background-color:#cceaab;
+}
+</style>
+
+</head>
+
+<body>
+<section>
+   <form action="/settings/myblog/update/final" method="post">
+
+      <div class="form-group ">
+        <input type="text"  class="form-control text-center" name="title" value=<%= title %> >
+        <textarea rows="10" columns="100"  name="message"><%= message %></textarea>
+      </div>
+      <input type="hidden" name="blog_id" value=<%= id %> >
+      <input type="hidden" name="date" value=<%= today %> >  
+      <button type="submit"  class="btn btn-success"> Update </button>
+</form>
+</section>
+</body>
+
+</html>
+
+
+

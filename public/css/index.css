@@ -1,0 +1,459 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#sub{
+	border:none;
+	background-color:#353f44;
+	color:lightblue; 
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+body{
+	text-align: center;
+	background-color: #e5e5e5;
+}
+
+p{
+  text-align: left;
+  font-family: 'Electrolize', sans-serif;
+  font-size: 20px;
+  color: #222831;
+}
+
+.p{
+	color:black;
+}
+
+h1{
+	text-align: center;
+	font-family: 'El Messiri';
+	font-size: 50px;
+	color:purple;
+    margin-bottom: 20px;
+}
+h2{
+	text-align: center;
+	font-family: 'El Messiri';
+	color:purple;
+	font-size: 200%;
+    margin-bottom: 20px;
+}
+
+
+
+.nav-item{
+	margin-right: 10px;
+}
+
+
+.navbar-brand{
+	font-size: 40px;
+	margin-right:35%;
+	margin-left: 5%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#weather{
+	color:red;
+}
+
+#head_span{
+	font-weight: bold;
+	color:gold;
+	margin-left:2px;
+	-webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: black;
+}
+
+#navigation{
+	background-color: #d89cf6;
+	border-top: 1px solid black;
+	border-bottom: 3px solid black;
+	
+}
+
+.image{
+	margin-left: auto;
+	margin-right: auto;
+	padding:30px;
+}
+
+
+
+
+#sub-btn{
+	width:30%;
+	margin-bottom:20px;
+	height: 50px;
+	border: 2px solid;
+	box-shadow: 5px 5px 5px #000000;
+	
+}
+
+
+
+.justify-content-end {
+	background-color: #303960 ;
+
+}
+
+.jumbotron{
+	background-color: white;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-bottom: 0px;
+}
+
+
+
+.btn{
+	font-family: 'Electrolize', sans-serif;
+}
+
+.btn-google{
+	width:80%;
+}
+
+
+
+
+<!-- for the texta that user will compose will be visible on access page-->
+
+
+.form1{
+   background-color: white;
+}
+
+
+#fb{
+	width: 80%;
+	margin-top: 2%;
+}
+
+.faliure{
+	background-color: #e71414;
+
+}
+.faliure p{
+	color: white;
+}
+.faliure h1{
+	color: black;
+}
+
+#h1{
+	margin-right: auto;
+	margin-left: auto;
+	color:gold;
+}
+#h2{
+	color:white;
+	float:left;
+	font-size: 25px;
+	font-family: cambria;
+
+}
+#h3{
+	font-size: 20px;
+	color:yellow;
+}
+
+.credentials{
+	width:80%;
+	box-shadow: 30px 20px 50px #000000;
+	margin:10px auto;
+	background-color: #a8df85; <!--#ee91bc-->;
+	padding-top:70px;
+	border: 1px solid black;
+
+	}
+.aside{
+    width:90%;
+    margin-top: 40px;
+<!--  #ee91bc-->
+}
+
+#ta2{
+	width:100%;
+  height: 40px;
+  font-size: 30px;
+  box-shadow: 10px 5px 20px #000000;
+  border: 2px solid;
+  margin-bottom: 0px;
+  background-color:#cceaab; <!--#b6eb7a-->
+}
+#ta1{
+	width: 100%;
+	height: 200px;
+	margin-top: 20px;
+	font-size: 15px;
+	box-shadow: 10px 5px 20px #000000;
+	border: 2px solid;
+	background-color:#cceaab; <!--#b6eb7a-->
+}
+
+.drop{
+	position: relative;
+}
+
+
+#form-settings{
+	margin-right: auto;
+	margin-left: auto;
+	width:60%;
+}
+
+.form-control{
+	width:95%;
+	margin-bottom: 5%;
+}
+
+
+.footer{
+	background-color: #d89cf6; <!--#303960--> 
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-top: 4px solid black;
+	background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
+}
+
+.footer1{
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+}
+.footer2{
+	margin-left: 40px;
+	width:5%;
+}
+.form-group{
+	font-family: 'Electrolize', sans-serif;
+	color:black;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	margin-bottom: 1%;
+
+   
+}
+
+
+#setting{
+	text-align: center;
+	padding:10px;
+}
+
+.btn-warning{
+	width: 30%;	
+	margin:auto;
+}
+.btn-danger{
+	width: 30%;
+	margin-top: 2%;
+}
+.btn-primary{
+	width: 60%;
+	margin-top: 2%;
+}
+.btn-success{
+	width: 30%;
+	margin-top: 2%;
+}
+
+
+.message{
+	width: 70%;
+	padding:60px 30px;
+	margin:auto;
+	margin-top: 40px;
+	background-color: #a8df85;<!--#ee91bc-->;
+	<!--box-shadow: -15px -15px 30px #000000;-->
+}
+.message1{
+	width: 100%;
+	border: 2px solid black;
+	padding:15px;
+	background-color: #b6eb7a;
+	box-shadow: -15px -15px 30px #000000;
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+.message2{
+	width: 100%;
+	border: 2px solid black;
+	background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
+	padding: 20px;
+	padding-bottom:40px;
+	background-color: #353f44; <!--#ffcac2-->
+	box-shadow: -15px -15px 20px #000000;
+	margin: 10px auto;
+    position: relative;
+    border-radius: 25px;
+}
+.message3{
+	width: 100%;
+	margin-bottom: 40px;
+	margin-top: 40px;
+	padding:25px;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	background-color: #a8df85;
+}
+.margin_more{
+	margin:60px auto;
+	padding:60px 10px;
+}
+
+.weather{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.h1{
+	
+}
+.h3{
+   font-size: 20px;
+}
+
+hr{
+	margin-right: auto;
+	margin-left: auto;
+	width:80%;
+	border-top: 2px dotted;
+}
+
+.head-anchor{
+	color:black;
+}
+#head-toggler{
+	color:black;
+}
+
+h3{
+	text-align: left;
+	color:red;
+}
+h4{
+	color:red;
+}
+h5{
+	margin-bottom: 20px;
+}
+
+#delete-img{
+	margin-left: 90%;
+}
+
+.use_card{
+	margin:100px 20px;
+}
+
+.mypic{
+	width:50%;
+	border-radius: 50%;
+	margin:10px auto;
+	border:3px solid black;
+    
+}
+
+.about{
+	padding:80px 30px;
+	margin-bottom:100px;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
+	position:relative;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+ #form-settings{
+	margin-right: auto;
+	margin-left: auto;
+	width:100%;
+}
+.message{
+	width: 100%;
+	padding:60px 30px;
+	margin:auto;
+	margin-top: 40px;
+	background-color: #a8df85;<!--#ee91bc-->;
+	<!--box-shadow: -15px -15px 30px #000000;-->
+}
+.aside{
+    width:100%;
+    margin-top:0px;
+<!--  #ee91bc-->
+}
+#ta2{
+	width:100%;
+  height: 35px;
+  font-size: 30px;
+  box-shadow: 10px 5px 20px #000000;
+  border: 2px solid;
+  margin-bottom: 0px;
+  background-color:#cceaab; <!--#b6eb7a-->
+}
+.footer2{
+	margin-left: 20px;
+	width:10%;
+}
+
+#navigation{
+	background-color: #d89cf6; 
+	border-top: 1px solid black;
+	border-bottom: 3px solid black;
+	
+}
+.navbar-brand{
+	font-size: 40px;
+	margin-right:20%;
+    margin-left:0%;
+}
+.navbar-brand img{
+	width:20%;
+}
+.nav-item img{
+	width:15%;
+}
+.credentials{
+	width:95%;
+	box-shadow: 30px 12px 50px #000000;
+	margin:15px auto;
+	margin-bottom: 40px;
+	background-color: #a8df85; <!--#ee91bc-->;
+	padding-top:40px;
+
+	}
+.form-control{
+	width:95%;
+	margin-bottom: 5%;
+}
+
+
+}
+
+.abt-div{
+	margin-bottom:50px;
+	padding:20px 30px;
+	padding-bottom: 60px; 
+}
+.abt-div p{
+	margin-top: 30px;
+	font-size:20px;
+
+}
+.abt-img{
+	border-radius: 50%;
+	float:left;
+	margin-right:20px;
+	margin-bottom: 10px;
+	border:3px solid black;
+	width:90%;
+}

@@ -1,0 +1,67 @@
+<%- include('header'); -%>
+
+<h1> Settings page !! </h1>
+
+
+<div class="message ">
+<h2> Set/Update your profile here !!!</h2>
+<form action="/settings/profile" method="post" class="form" >
+  <div class="form-group">
+
+    <input type="text"  name="uname" class="form-control" id="form-settings" placeholder="What is your name?"  >
+   
+    <input type="text"  name="insta" class="form-control" id="form-settings" placeholder="Your Instagram username"  >
+
+    <input type="text"  name="fb" class="form-control" id="form-settings" placeholder="Your Facebook username"  >
+
+  </div>
+ 
+   <button type="submit" class="btn btn-success">Alright!!</button>
+</form>
+</div>
+
+
+
+
+
+
+<div class="message">
+<h2>Check out all the blogs posted by you by clicking on the button below !!!</h2>
+<a href="/settings/my_blogs"  class="btn btn-warning"> HERE !!! </a><br>
+</div>
+
+
+
+
+
+
+<div class="message">
+<h2> Update Your Record !!! </h2>
+<h3>Note:</h3> <p class="p">If you signed in using Google/Facebook then this section is not for you because your data is verified from Google/Facebook </p>
+
+<form action="/settings/update" class="form"  method="post">
+  <div class="form">
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">NEW Email address (if any)</label>
+    <input type="email"  name="username" class="form-control" id="form-settings" placeholder="Enter new email address" id="exampleInputEmail1" aria-describedby="emailHelp">
+    
+  </div>
+ </div>
+  
+  <button type="submit" class="btn btn-success ">Update!!</button>
+ 
+</form>
+</div>
+
+
+
+
+<div class="message">
+   <h2> Delete your Data Record from this website</h2>
+  <p class="p"> On clicking the button below you will be deleting your account and all the data related to your blog will be deleted </p>
+   <a href="/warning"  class="btn btn-danger"> Delete </a>
+</div>
+
+
+<%- include('footer'); -%>

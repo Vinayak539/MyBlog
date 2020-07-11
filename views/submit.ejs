@@ -1,0 +1,22 @@
+<%- include('header'); -%>
+
+<h2> Hey !!! Here you are !! Post your blog now !</h2>
+
+<h3>NOTE:</h3> 
+<h5>Before composing the blog mke sure that you create your profile by going to settings. If not created your blogs will not be displayed </h5>
+
+
+<form action="/submit" method="POST">
+
+      <div class="form-group ">
+        <input type="text" id="ta2" class="form-control text-center" name="title" placeholder="What's the title?">
+        <textarea rows="10"   columns="100"  id="ta1" name="message" placeholder="Type your message over here !!!!" ></textarea>
+      </div>
+      <button type="submit"  class="btn btn-success">Post your blog </button>
+</form>
+
+   
+
+
+
+<%- include('footer'); -%>

@@ -1,0 +1,66 @@
+<%- include('header'); -%>
+
+<h1> Welcome to MyBlog where you can write your thoughts !!! </h1>
+<!--<h4 style="font-size:20px;text-align:center;color:green; width:70%;margin:auto;"> Make sure you go through HELP page if you have any query. If you cannot see "Help" on the navigation bar then append <span style="text-decoration:underline"> "/help" </span> at the end of URL i.e. after .com </h4>-->
+
+
+
+<!--<div id="carouselExampleControls" class="carousel slide message" data-ride="true" data-interval="2000" data-hover="true" >
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="images/easy.jpg" class="d-block caro-img" width="40%" alt="Easy to use">
+      <h1 >Easy to use !!!</h1>
+        <p>This site is user friendly and easy to use.</p>
+    </div>
+    <div class="carousel-item">
+      <img src="images/write.png" class="d-block caro-img" width="40%" alt="Write it out!!">
+      <h1>Write it out !!</h1>
+        <p>You can write our blogs and show it to everyone.</p>
+    </div>
+    <div class="carousel-item">
+      <img src="images/signIn.jpg" class="d-block caro-img" width="40%" alt="Google/FB">
+      <h1>Sign in with Google/Facebook</h1>
+        <p>Dont want to mess around by remembering your password everytime you login ? Use Google/Facebook and login just on click of button without entering any passwords</p> -->                             
+        </div>
+  </div>
+
+ <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" ></span>
+    </a>
+
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" ></span>
+  </a>
+</div>-->
+
+
+
+<!-- Weather API -->
+<div class="message margin-more">
+<h1> Search your city's weather ! </h1>
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12">
+  <form action="/" method="post">
+  <input type="text" name="cityname" placeholder="search by city name">
+  <input type="submit" name="submit" value="search" class="btn btn-dark">
+  </form>
+</div>
+
+<div class="col-lg-6 col-md-6 col-sm-12">
+  <p>It is <span id="weather"> <%=temp %> </span>degrees here in  <span id="weather"> <%=city %></span></p>
+ <p> Humidity   <span id="weather"> <%=humidity %> </span> %</p>
+  <p>Feels like <span id="weather"><%=feels_like %></span></p>
+</div>
+</div>
+</div>
+
+<hr>
+
+
+<p style="padding:15px;color:purple;">  A blog (a truncation of "weblog") is a discussion or informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order, so that the most recent post appears first, at the top of the web page.<br> Until 2009, blogs were usually the work of a single individual,citation needed occasionally of a small group, and often covered a single subject or topic. In the 2010s, "multi-author blogs" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic.<br> The rise of Twitter and other "microblogging" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.</p>
+
+<p style="padding:15px;color:purple;">The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML or computer programming.<br> Previously, a knowledge of such technologies as HTML and File Transfer Protocol had been required to publish content on the Web, and early Web users therefore tended to be hackers and computer enthusiasts. In the 2010s, the majority are interactive Web 2.0 websites, allowing visitors to leave online comments, and it is this interactivity that distinguishes them from other static websites.<br> In that sense, blogging can be seen as a form of social networking service. Indeed, bloggers not only produce content to post on their blogs but also often build social relations with their readers and other bloggers. However, there are high-readership blogs which do not allow comments. </p>
+
+
+
+<%- include('footer'); -%>

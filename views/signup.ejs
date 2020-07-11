@@ -1,0 +1,52 @@
+<%- include('header'); -%>
+
+<div class="row">
+<div class="col-sm-12 col-md-8 col-lg-6">
+ <div class="jumbotron credentials ">
+
+<img class="image" src="images/signup.svg"  width=150 height=150>
+<h1>SIGN UP !!</h1>
+
+<form action="/signup" class="form"  method="post">
+   <div class="form">
+
+ <!--<div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="text"  name="Uname" class="form-control"  >
+  </div>-->
+    
+
+  <div class="form-group">
+    <input type="email"  placeholder="Email Id" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" size="10">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+<div class="form-group">
+    <input type="password"   placeholder="Create Password" name="password"  class="form-control" id="exampleInputPassword1">
+  </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary ">Sign Up!!</button>
+  
+</form>
+
+</div>
+</div>
+
+
+<div class="col-sm-12  col-md-4 col-lg-6">
+<div class="jumbotron aside">
+<p style="text-align: center;">You can even Sign Up using  !!!</p>
+    <a href="/auth/google" class="btn btn-google "><i class="fa fa-google" ></i> Google </a>
+    <a href="/auth/facebook" id="fb" class="btn btn-facebook "><i class="fa fa-facebook" ></i> Facebook </a>
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+
+<%- include('footer'); -%>

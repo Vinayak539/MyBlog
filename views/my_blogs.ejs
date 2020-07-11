@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <!--font electrolize-->
+  <link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
+    <!-- font: Monoton,Tinos,AL Messiri-->
+  <link href="https://fonts.googleapis.com/css?family=El+Messiri|Monoton|Tinos&display=swap" rel="stylesheet">
+
+  <style type="text/css">
+  	div{
+      width:99%;
+  		padding:40px 30px;
+  		background-color:#353f44;
+      margin:auto;
+  		margin-top: 20px;
+      border-radius: 25px;
+  		position: relative;
+    }
+  	div h1{
+
+      color:gold;
+      font-family: 'El Messiri';
+  	}
+  	div p{
+  		font-size:18px;
+  		color:white;
+  		font-family: 'Electrolize', sans-serif;
+      line-height: 25px;
+  	}
+  	div h3{
+  		color:gold;
+  	}
+  	.btn-warning{
+        margin-left:90%;
+        margin-right:10%;
+       
+  	}
+    .btn-light{
+       margin-left:90%;
+       margin-top: 10px;
+    }
+  	h1{
+       
+  		color:purple;
+  		margin:30px auto;
+  		text-align: center;
+  		font-family: 'El Messiri';
+  	}
+  </style>
+</head>
+<body>
+
+	<h1 > Here are the blogs posted by you so far !! </h1>
+
+<%  getBlog.forEach(function(element){  %>
+
+<div class="message2">
+    <section>
+    <form action="/settings/myblog/delete" method="post">
+      <input type="hidden" name="blog_id" value= <%= element.blog_id %> >
+      <input type="submit" name="submit" class="btn btn-warning" value="Delete" >
+    </form>
+
+    <form action="/settings/myblog/update" method="post">
+      <input type="hidden" name="blog_id" value= <%= element.blog_id %> >
+      <input type="submit" name="submit" class="btn btn-light" value="Edit" >
+    </form>
+  </section>
+
+	<h1 > <%= element.title  %>  </h1>
+	<h3 > <%= element.date   %>  </h3>
+    <p>  <%= element.message  %> </p>
+    
+</div>
+
+<% }) %>
+
+</body>
+</html>
+
+
+
+
+
+
+
+ 
+

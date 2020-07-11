@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyBlog</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+   <!--font electrolize-->
+  <link href="https://fonts.googleapis.com/css?family=Electrolize&display=swap" rel="stylesheet">
+    <!-- font: Monoton,Tinos,AL Messiri-->
+  <link href="https://fonts.googleapis.com/css?family=El+Messiri|Monoton|Tinos&display=swap" rel="stylesheet">
+  <style type="text/css">
+  	div{
+  		padding:30px 30px;
+  		margin-top: 30px;
+      
+  	}
+  	div p{
+      color:black;
+      font-family: 'Electrolize', sans-serif;
+      line-height: 30px;
+      font-size: 120%;
+  	}
+  	
+  	h1{
+  		font-family: 'El Messiri';
+  		font-size:250%;
+  		color:purple;
+      text-align: center;
+  	}
+    h2{
+      color:red;
+    }
+    footer{
+      text-align: center;
+    }
+    hr{
+     border-bottom: 2px dotted black;
+      width:80%;
+    }
+  </style>
+</head>
+<body>
+
+
+ <div class="container">
+   <h1> <%=getTitle%> </h1>
+   <h2> <%=getdate %> </h2>
+   <p> <%=getContent%> </p>
+   <h4>By: <%=name %></h4> 
+ </div>
+
+<hr>
+
+<footer>
+  <h1> Connect to <%=name %> :</h1>
+
+  <a href="https://www.instagram.com/<%=insta %>" class="btn btn-danger"> Connect using Instagram</a>
+    
+  <a href="https://www.facebook.com/search/top/?q=<%=fb %>&epa=SEARCH_BOX" class="btn btn-secondary">
+    Connect using Facebook
+  </a>
+
+  </footer>
+
+</body>
+</html>
