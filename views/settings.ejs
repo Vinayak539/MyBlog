@@ -1,12 +1,11 @@
 <%- include('header'); -%>
 
-<h1> Settings page !! </h1>
-
-
 <div class="message ">
 <h2> Set/Update your profile here !!!</h2>
 <form action="/settings/profile" method="post" class="form" >
   <div class="form-group">
+     
+     <input type="file" name="image" class="form-control" id="form-settings" placeholder="Upload your image" > 
 
     <input type="text"  name="uname" class="form-control" id="form-settings" placeholder="What is your name?"  >
    
@@ -26,6 +25,7 @@
 
 
 <div class="message">
+<h2> Hey <span id="recognize"><%= name%></span> </h2>
 <h2>Check out all the blogs posted by you by clicking on the button below !!!</h2>
 <a href="/settings/my_blogs"  class="btn btn-warning"> HERE !!! </a><br>
 </div>

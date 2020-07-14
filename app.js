@@ -14,7 +14,10 @@ const findOrCreate = require('mongoose-findorcreate');
 const _ =require("lodash");
 const https=require('https');
 var uuid = require('uuid-random');
-
+var fs = require('fs'); 
+var path = require('path'); 
+var multer = require('multer'); 
+  
 
 const app = express();
 
@@ -34,8 +37,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+////////////////////////// image upload //////////////////////////////////////////////////////////
 
-//// date //////
+var storage = multer.diskStorage({ 
+    destination: (req, file, cb) => { 
+        cb(null, 'uploads') 
+    }, 
+    filename: (req, file, cb) => { 
+        cb(null, file.fieldname + '-' + Date.now()) 
+    } 
+}); 
+  
+var upload = multer({ storage: storage });
+
+
+
+/////////////////////////  date ///////////////////////////////////////////////////////////////////
 var today = new Date();
          var dd = String(today.getDate()).padStart(2, '0');
          var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -61,7 +78,25 @@ const userSchema = new mongoose.Schema({
  googleId:String,
  facebookId:String,
  blog:[Object],
- profile:Object
+ profile:{
+  uname:{
+    type:String,
+    default:"user"
+  },
+  insta:{
+    type:String,
+    default:""
+  },
+  fb:{
+    type:String,
+    default:""
+  },
+  image: 
+    { 
+        data: Buffer, 
+        contentType: String 
+    } 
+ }
 });  
 
 userSchema.plugin(passportLocalMongoose);
@@ -126,8 +161,14 @@ app.get("/",function(req,res){
 
 app.get("/settings",function(req,res){
   if(req.isAuthenticated()){
-    res.render("settings");
-  }else{
+
+     User.findById({_id:req.user._id},function(err,found){
+      if(!err){
+         res.render("settings", {name:_.upperCase(found.profile.uname) });
+      }
+    })
+      
+}else{
     res.redirect("/login");
   }
      
@@ -200,7 +241,12 @@ app.get("/display",function(req,res){
 
 app.get("/submit",function(req,res){
 	if (req.isAuthenticated()){
-    res.render("submit");
+    User.findById({_id:req.user._id},function(err,found){
+      if(!err){
+        res.render("submit",{name:_.upperCase(found.profile.uname)});
+      }
+    })
+    
   } else {
     res.redirect("/login");
   }
@@ -302,7 +348,13 @@ user.save(function(err){
         res.redirect("/");
       });
     }
+
+
+  
+
   });
+
+
 
 });
 
@@ -412,9 +464,40 @@ app.post("/settings/update",function(req,res){
 })
 
 
-app.post("/settings/profile",function(req,res){
+app.post('/settings/profile', upload.single('image'), (req, res, next) => { 
 
-/*var updateQuery = {};
+  console.log(req.body);
+  console.log(req.file);
+
+User.findById({_id: req.user._id},function(err,found){ 
+      if(!err){
+        found.profile= { 
+        uname: req.body.uname, 
+        insta: req.body.insta, 
+        fb:req.body.fb,
+        image: { 
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.body.image)), 
+            contentType: 'image/png'
+        } 
+    } 
+
+
+    found.save(function(err){
+      if(!err){
+         res.render("success",{success:"Your profile is set/updated successfully !!! "});
+      }
+    })
+      }else{
+        res.render("faliure",{faliure:err});
+      }
+  }); 
+
+}); 
+
+
+/*app.post("/settings/profile",function(req,res){
+
+var updateQuery = {};
 
 if(req.body.name==="" && req.body.DOB===""){
     updateQuery={
@@ -451,30 +534,29 @@ else if(req.body.additional_info===""){
 }
 else{
   updateQuery=req.body;
-}*/
+}
 
-/*for(key of req.body) {
+for(key of req.body) {
   //this would be a function to validate what can be updated
     if (req.body.hasOwnProperty(key) && canBeModified(key)){ 
         updateQuery['body.' + key] = req.body[key] };
-}*/
+}
 //db.users.update({}, {$set: updateQuery}, cb);
 
 
- /*User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:updateQuery}},{overwrite:false},function(err){ 
-      if(!err){
-        res.render("success",{success:"Your profile is set/updated successfully !!! "})
-      }
-  }); */
-
-
-
- User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false},function(err){ 
+ User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:updateQuery}},{overwrite:false},function(err){ 
       if(!err){
         res.render("success",{success:"Your profile is set/updated successfully !!! "})
       }
   }); 
-})
+
+ User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false,useFindAndModify:false},function(err){ 
+      if(!err){
+        res.render("success",{success:"Your profile is set/updated successfully !!! "})
+      }
+  }); 
+
+})*/
 
 
 app.get("/settings/delete",function(req,res){
@@ -497,7 +579,7 @@ app.get("/settings/my_blogs",function(req,res){
       if(found.blog){
          var myblog=found.blog;
          res.render("my_blogs" ,{getBlog:myblog});
-      }else{
+      }else if(found.blog===""){
         res.render("faliure",{faliure:"You have not posted any blogs yet"});
       }
     }else{
@@ -548,21 +630,31 @@ app.post("/settings/myblog/update/final",function(req,res){
 
  User.findById({_id:req.user._id},function(err,found){
   if(!err){
+    var x="";
     found.blog.forEach(function(x){
     if(x.blog_id===req.body.blog_id){
-      x=req.body;
-    }
-    
-     });
+      //x=req.body;
 
+  User.updateOne({_id:req.user._id},{$set:{ x:req.body}},function(err){
+  if(!err){
+    res.redirect("/settings/my_blogs");
+  }else{
+          res.render("faliure",{faliure:err})
+        }
+ })
+
+    }
+    });
+
+ 
      
-   found.save(function(err){
+   /*found.save({overwrite:true},function(err){
         if(!err){
           res.redirect("/settings/my_blogs");
         }else{
           res.render("faliure",{faliure:err})
         }
-      })
+      })*/
 
   
   }

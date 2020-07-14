@@ -3,6 +3,9 @@
 	padding: 0px;
 }
 
+#recognize{
+	color:red;
+}
 #sub{
 	border:none;
 	background-color:#353f44;
@@ -70,10 +73,7 @@ h2{
 }
 
 #navigation{
-	background-color: #d89cf6;
-	border-top: 1px solid black;
-	border-bottom: 3px solid black;
-	
+	background-color:#d89cf6;
 }
 
 .image{
@@ -218,7 +218,6 @@ h2{
 	background-color: #d89cf6; <!--#303960--> 
 	padding-top: 20px;
 	padding-bottom: 20px;
-	border-top: 4px solid black;
 	background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
 }
 
@@ -377,6 +376,9 @@ h5{
 	margin-right: auto;
 	margin-left: auto;
 	width:100%;
+}
+.message2{
+    border-radius: 10px;
 }
 .message{
 	width: 100%;

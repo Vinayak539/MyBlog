@@ -11,27 +11,27 @@
 
   <style type="text/css">
   	div{
-      width:99%;
+      width:95%;
   		padding:40px 30px;
-  		background-color:#353f44;
+  		background-color: #b6eb7a;
       margin:auto;
   		margin-top: 20px;
-      border-radius: 25px;
+      border-radius: 15px;
   		position: relative;
+      border-top:2px solid black;
     }
   	div h1{
-
-      color:gold;
+      color:purple;
       font-family: 'El Messiri';
   	}
   	div p{
   		font-size:18px;
-  		color:white;
+  		color:black;
   		font-family: 'Electrolize', sans-serif;
       line-height: 25px;
   	}
   	div h3{
-  		color:gold;
+  		color:red;
   	}
   	.btn-warning{
         margin-left:90%;
@@ -52,12 +52,9 @@
   </style>
 </head>
 <body>
-
-	<h1 > Here are the blogs posted by you so far !! </h1>
-
 <%  getBlog.forEach(function(element){  %>
 
-<div class="message2">
+<div >
     <section>
     <form action="/settings/myblog/delete" method="post">
       <input type="hidden" name="blog_id" value= <%= element.blog_id %> >
