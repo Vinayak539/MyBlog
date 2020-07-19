@@ -633,6 +633,6 @@ app.post("/settings/myblog/update/final",function(req,res){
 
 ///////////////////////////////////////////////////////////// server port /////////////////////////////////////////////////////////////////////////////////// 
 
-app.listen( 3000, function(){
+app.listen( proess.env.PORT || 3000, function(){
 	console.log("server up and running on port 3000 you can now perform your activities server is always ready to help you !!!");
 })
