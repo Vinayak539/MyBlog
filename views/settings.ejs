@@ -3,9 +3,7 @@
 <div class="message ">
 <h2> Set/Update your profile here !!!</h2>
 <form action="/settings/profile" method="post" class="form" >
-  <div class="form-group">
-     
-     <input type="file" name="image" class="form-control" id="form-settings" placeholder="Upload your image" > 
+  <div class="form-group"> 
 
     <input type="text"  name="uname" class="form-control" id="form-settings" placeholder="What is your name?"  >
    
@@ -13,10 +11,20 @@
 
     <input type="text"  name="fb" class="form-control" id="form-settings" placeholder="Your Facebook username"  >
 
+     <!--Photo: <input type="file" name="image" placeholder="Upload your image" >-->
   </div>
- 
    <button type="submit" class="btn btn-success">Alright!!</button>
 </form>
+<hr>
+
+<div class="form-div">
+<h2> Your current profile</h2>
+<p>Name: <span id="recognize"><%=found.profile.uname%></span></p>
+<p>Instagram_Username: <span id="recognize"><%=found.profile.insta%></span></p>
+<p>Facebook_Username: <span id="recognize"><%=found.profile.fb%></span></p>
+</div>
+
+
 </div>
 
 

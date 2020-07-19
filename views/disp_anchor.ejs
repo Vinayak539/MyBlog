@@ -9,11 +9,16 @@
     <!-- font: Monoton,Tinos,AL Messiri-->
   <link href="https://fonts.googleapis.com/css?family=El+Messiri|Monoton|Tinos&display=swap" rel="stylesheet">
   <style type="text/css">
+    *{
+      margin:0px;
+      padding:0px;
+    }
   	div{
   		padding:30px 30px;
   		margin-top: 30px;
       
   	}
+  
   	div p{
       color:black;
       font-family: 'Electrolize', sans-serif;
@@ -32,16 +37,22 @@
     }
     footer{
       text-align: center;
+      margin-bottom: 100px;
+      margin-top: 40px;
     }
     hr{
+      text-align: center;
      border-bottom: 2px dotted black;
       width:80%;
+    }
+    img{
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-
+<section>
  <div class="container">
    <h1> <%=getTitle%> </h1>
    <h2> <%=getdate %> </h2>
@@ -52,6 +63,9 @@
 <hr>
 
 <footer>
+
+  <img src=<%=imageURL%> alt="<%=name %>'s image"> 
+
   <h1> Connect to <%=name %> :</h1>
 
   <a href="https://www.instagram.com/<%=insta %>" class="btn btn-danger"> Connect using Instagram</a>
@@ -61,6 +75,6 @@
   </a>
 
   </footer>
-
+</section>
 </body>
 </html>

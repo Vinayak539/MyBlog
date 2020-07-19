@@ -39,7 +39,7 @@ app.use(passport.session());
 
 ////////////////////////// image upload //////////////////////////////////////////////////////////
 
-/*var storage = multer.diskStorage({ 
+var storage = multer.diskStorage({ 
     destination: (req, file, cb) => { 
         cb(null, 'public/uploads') 
     }, 
@@ -48,7 +48,7 @@ app.use(passport.session());
     } 
 }); 
   
-var upload = multer({ storage: storage });*/
+var upload = multer({ storage: storage });
 
 
 
@@ -68,7 +68,7 @@ var feels_like="";
 var humidity="";
 
 //mongoose connection 
-mongoose.connect('mongodb+srv://admin-vinayak:WsUMgGzGLW75QVuR@cluster0-xgcqw.mongodb.net/MyBlogs', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+mongoose.connect('mongodb://localhost:27017/MyBlogs', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
 //creating the schema
 const userSchema = new mongoose.Schema({
@@ -91,11 +91,11 @@ const userSchema = new mongoose.Schema({
     type:String,
     default:""
   },
-  /*image: 
+  image: 
     { 
         data: Buffer, 
         contentType: String 
-    }*/ 
+    } 
  }
 });  
 
@@ -433,9 +433,8 @@ app.post("/settings/update",function(req,res){
 
 })
 
-// PHOTO UPLOAD
 
-/*app.post('/settings/profile', upload.single('image'), (req, res, next) => { 
+app.post('/settings/profile', upload.single('image'), (req, res, next) => { 
 
 User.findById({_id: req.user._id},function(err,found){ 
       if(!err){
@@ -460,12 +459,12 @@ User.findById({_id: req.user._id},function(err,found){
       }
   }); 
 
-}); */
+}); 
 
 
-app.post("/settings/profile",function(req,res){
+/*app.post("/settings/profile",function(req,res){
 
-/*var updateQuery = {};
+var updateQuery = {};
 
 if(req.body.name==="" && req.body.DOB===""){
     updateQuery={
@@ -516,7 +515,7 @@ for(key of req.body) {
       if(!err){
         res.render("success",{success:"Your profile is set/updated successfully !!! "})
       }
-  }); */
+  }); 
 
  User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false,useFindAndModify:false},function(err){ 
       if(!err){
@@ -524,7 +523,7 @@ for(key of req.body) {
       }
   }); 
 
-})
+})*/
 
 
 app.get("/settings/delete",function(req,res){
