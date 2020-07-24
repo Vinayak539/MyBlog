@@ -66,9 +66,9 @@ h2{
 
 #head_span{
 	font-weight: bold;
-	color:gold;
+	color:#ffc7c7;
 	margin-left:2px;
-	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
 }
 
@@ -107,6 +107,16 @@ h2{
 	margin-left: auto;
 	margin-right: auto; 
 	margin-bottom: 0px;
+	padding-top: 20px;
+}
+
+.jumbotron_dark{
+	background-color: grey;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-bottom: 0px;
+	padding-top: 20px;
 }
 
 
@@ -150,9 +160,11 @@ h2{
 	margin-right: auto;
 	margin-left: auto;
 	color:gold;
+	-webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: black;
 }
 #h2{
-	color:white;
+	color:black;
 	float:left;
 	font-size: 25px;
 	font-family: cambria;
@@ -160,14 +172,14 @@ h2{
 }
 #h3{
 	font-size: 20px;
-	color:yellow;
+	color:red;
 }
 
 .credentials{
 	width:80%;
 	box-shadow: 30px 20px 50px #000000;
 	margin:10px auto;
-	background-color: #a8df85; <!--#ee91bc-->;
+	background-color: #ffc7c7; <!--#a8df85-->; <!--#ee91bc-->;
 	padding-top:70px;
 	border: 1px solid black;
 
@@ -277,12 +289,12 @@ h2{
 
 .message{
 	border-radius:15px;
-	border-top:5px solid purple;
+	border-top:8px solid purple;
 	width: 70%;
 	padding:60px 30px;
 	margin:auto;
 	margin-top: 30px;
-	background-color: #a8df85;<!--#ee91bc-->;
+	background-color: #ffc7c7; <!--#a8df85-->;<!--#ee91bc-->;
 	<!--box-shadow: -15px -15px 30px #000000;-->
 
 }
@@ -297,13 +309,12 @@ h2{
 }
 .message2{
 	width: 100%;
-	border: 2px solid black;
-	background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
+	border-top: 5px solid purple;
 	padding: 20px;
 	padding-bottom:40px;
-	background-color: #353f44; <!--#ffcac2-->
+	background-color:#ffc7c7;  <!--#ffcac2-->
 	box-shadow: -15px -15px 20px #000000;
-	margin: 10px auto;
+	margin: 15px auto;
     position: relative;
     border-radius: 25px;
 }
@@ -400,7 +411,7 @@ h1{
 	padding:60px 30px;
 	margin:auto;
 	margin-top: 40px;
-	background-color: #a8df85;<!--#ee91bc-->;
+	
 	<!--box-shadow: -15px -15px 30px #000000;-->
 }
 .message img{
@@ -427,7 +438,7 @@ h1{
 }
 
 #navigation{
-	background-color: #d89cf6; 
+	
 	border-top: 1px solid black;
 	border-bottom: 3px solid black;
 	
@@ -448,7 +459,7 @@ h1{
 	box-shadow: 30px 12px 50px #000000;
 	margin:15px auto;
 	margin-bottom: 40px;
-	background-color: #a8df85; <!--#ee91bc-->;
+	background-color: #ffc7c7; <!--#ee91bc-->;
 	padding-top:40px;
 
 	}

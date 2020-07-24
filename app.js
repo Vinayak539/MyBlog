@@ -50,6 +50,20 @@ app.use(passport.session());
   
 var upload = multer({ storage: storage });*/
 
+///////////////////////// image upload youtube video //////////////////////////////////////////////////////////
+
+
+
+var storage = multer.diskStorage({ 
+    destination:"./public/uploads/",
+    filename: (req, file, cb) => { 
+        cb(null, file.fieldname + '-' + Date.now())
+    } 
+}); 
+  
+var upload = multer({ 
+  storage: storage
+   }).single('file');
 
 
 /////////////////////////  date ///////////////////////////////////////////////////////////////////
@@ -68,8 +82,8 @@ var feels_like="";
 var humidity="";
 
 //mongoose connection 
-mongoose.connect('mongodb+srv://admin-vinayak:WsUMgGzGLW75QVuR@cluster0-xgcqw.mongodb.net/MyBlogs', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
-
+mongoose.connect('mongodb://localhost:27017/MyBlogs', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+//mongodb+srv://admin-vinayak:WsUMgGzGLW75QVuR@cluster0-xgcqw.mongodb.net/
 //creating the schema
 const userSchema = new mongoose.Schema({
   
@@ -91,6 +105,7 @@ const userSchema = new mongoose.Schema({
     type:String,
     default:""
   },
+  img:String
   /*image: 
     { 
         data: Buffer, 
@@ -465,64 +480,26 @@ User.findById({_id: req.user._id},function(err,found){
 
 app.post("/settings/profile",function(req,res){
 
-/*var updateQuery = {};
-
-if(req.body.name==="" && req.body.DOB===""){
-    updateQuery={
-    additional_info:req.body.additional_info
-  };
-}
-else if(req.body.DOB==="" && req.body.additional_info===""){
-   updateQuery={
-    name:req.body.name
-  };
-}
-else if(req.body.name==="" && req.body.additional_info===""){
-    updateQuery={
-    DOB:req.body.DOB
-  };
-}
-else if(req.body.name===""){
-  updateQuery={
-    DOB:req.body.DOB,
-    additional_info:req.body.additional_info
-  };
-}
-else if(req.body.DOB===""){
-  updateQuery={
-    name:req.body.name,
-    additional_info:req.body.additional_info
-  };
-}
-else if(req.body.additional_info===""){
-  updateQuery={
-    name:req.body.name,
-    DOB:req.body.DOB
-  };
-}
-else{
-  updateQuery=req.body;
-}
-
-for(key of req.body) {
-  //this would be a function to validate what can be updated
-    if (req.body.hasOwnProperty(key) && canBeModified(key)){ 
-        updateQuery['body.' + key] = req.body[key] };
-}
-//db.users.update({}, {$set: updateQuery}, cb);
-
-
- User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:updateQuery}},{overwrite:false},function(err){ 
+/* User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false,useFindAndModify:false},function(err){ 
       if(!err){
         res.render("success",{success:"Your profile is set/updated successfully !!! "})
       }
   }); */
 
- User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false,useFindAndModify:false},function(err){ 
-      if(!err){
+ User.findById({_id: req.user._id},function(err,found){
+  console.log(req.body);
+       found.profile={
+          uname:req.body.uname,
+          insta:req.body.insta,
+          fb:req.body.fb,
+          img:fs.readFileSync(req.body.image)
+       };
+       found.save(function(err){
+         if(!err){
         res.render("success",{success:"Your profile is set/updated successfully !!! "})
-      }
-  }); 
+        }
+       })
+ });
 
 })
 
@@ -633,6 +610,6 @@ app.post("/settings/myblog/update/final",function(req,res){
 
 ///////////////////////////////////////////////////////////// server port /////////////////////////////////////////////////////////////////////////////////// 
 
-app.listen( proess.env.PORT || 3000, function(){
+app.listen(  3000, function(){
 	console.log("server up and running on port 3000 you can now perform your activities server is always ready to help you !!!");
 })
