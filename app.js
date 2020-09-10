@@ -55,8 +55,6 @@ var today = new Date();
 const mongoURI='mongodb://localhost:27017/blogs';
 
 const conn = mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
-//mongodb://localhost:27017/
-//mongodb+srv://admin-vinayak:WsUMgGzGLW75QVuR@cluster0-xgcqw.mongodb.net/myblog
 
 //creating the schema
 const userSchema = new mongoose.Schema({
