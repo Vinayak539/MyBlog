@@ -11,19 +11,14 @@
   
 <div class="form">
 
-  <!--<div class="form-group">
-    <input type="text"  name="Uname" class="form-control" >
-  </div>-->
-
-
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" placeholder="Enter Email Id" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" placeholder="Enter Email Id" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required minlength="12" maxlength="25"> 
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
 
 <div class="form-group">
-    <input type="password" placeholder="Enter Password"  name="password"  class="form-control" id="exampleInputPassword1">
+    <input type="password" placeholder="Enter Password"  name="password"  class="form-control" id="exampleInputPassword1" required minlength="8" maxlength="12" >
   </div>
  
  </div>
@@ -41,8 +36,8 @@
 <div class="col-sm-12  col-md-4 col-lg-6">
 <div class="jumbotron aside">
 <p style="text-align: center;">You can even Log In using !!!</p>
-    <a href="/auth/google" class="btn btn-google "> <i class="fa fa-google" ></i> Google </a>
-    <a href="/auth/facebook" id="fb" class="btn btn-facebook "><i class="fa fa-facebook" ></i> Facebook </a>
+    <a href="/auth/google" class="btn btn-google "> <i class="fab fa-google" ></i> Google </a>
+    <a href="/auth/facebook" id="fb" class="btn btn-facebook "><i class="fab fa-facebook" ></i> Facebook </a>
 </div>
 </div>
 

@@ -5,15 +5,16 @@
 <form action="/settings/profile" method="post" class="form" >
   <div class="form-group"> 
 
-    <input type="text"  name="uname" class="form-control" id="form-settings" placeholder="What is your name?" value="<%=found.profile.uname%>" >
+    <input type="file"  name="file" class="form-control" id="form-settings" >
+
+    <input type="text"  name="uname" class="form-control" id="form-settings" placeholder="What is your name?" value="<%=found.profile.uname%>" maxlength="20" >
    
-    <input type="text"  name="insta" class="form-control" id="form-settings" placeholder="Your Instagram username" 
+     <input type="text"  name="insta" class="form-control" id="form-settings" placeholder="Your Instagram username" 
     value="<%=found.profile.insta%>" > 
 
-    <input type="text"  name="fb" class="form-control" id="form-settings" placeholder="Your Facebook username" 
-    value="<%=found.profile.fb%>"  >
+     <input type="text"  name="fb" class="form-control" id="form-settings" placeholder="Your Facebook username" 
+      value="<%=found.profile.fb%>"  >
 
-     Photo: <input type="file" name="image" placeholder="Upload your image" accept="image/png, image/jpeg" >
   </div>
    <button type="submit" class="btn btn-success">Alright!!</button>
 </form>
@@ -27,7 +28,7 @@
 <div class="message">
 <h2> Hey <span id="recognize"><%= name%></span> </h2>
 <h2>Check out all the blogs posted by you by clicking on the button below !!!</h2>
-<a href="/settings/my_blogs"  class="btn btn-warning"> HERE !!! </a><br>
+<a href="/settings/my_blogs"  class="btn btn-warning"> HERE !!! <span class="badge badge-light"><%=count %></span> </a><br>
 </div>
 
 

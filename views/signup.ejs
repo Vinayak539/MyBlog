@@ -10,20 +10,21 @@
 <form action="/signup" class="form"  method="post">
    <div class="form">
 
- <!--<div class="form-group">
-    <label for="exampleInputEmail1">Name</label>
-    <input type="text"  name="Uname" class="form-control"  >
-  </div>-->
-    
 
   <div class="form-group">
-    <input type="email"  placeholder="Email Id" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" size="10">
+    <input type="email"  placeholder="Email Id" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" size="10" required minlength="12" maxlength="25" >
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
 
 <div class="form-group">
-    <input type="password"   placeholder="Create Password" name="password"  class="form-control" id="exampleInputPassword1">
+    <input type="password" placeholder="Create Password" name="password"  class="form-control" id="exampleInputPassword1" required minlength="8" maxlength="12" >
+    <small id="emailHelp" class="form-text text-muted">Create strong passwords or else use Google/FB </small>
   </div>
+
+  <!--<div class="form-group">
+    <input type="text"   placeholder="Contact number" name="contact"  class="form-control">
+
+  </div>-->
 
   </div>
 
@@ -38,8 +39,8 @@
 <div class="col-sm-12  col-md-4 col-lg-6">
 <div class="jumbotron aside">
 <p style="text-align: center;">You can even Sign Up using  !!!</p>
-    <a href="/auth/google" class="btn btn-google "><i class="fa fa-google" ></i> Google </a>
-    <a href="/auth/facebook" id="fb" class="btn btn-facebook "><i class="fa fa-facebook" ></i> Facebook </a>
+    <a href="/auth/google" class="btn btn-google "><i class="fab fa-google"></i> Google </a>
+    <a href="/auth/facebook" id="fb" class="btn btn-facebook "><i class="fab fa-facebook" ></i> Facebook </a>
 </div>
 
 </div>

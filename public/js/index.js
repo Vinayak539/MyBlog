@@ -1,4 +1,4 @@
-
+ 
 
 $("#dark").click(function(){
 	$(".jumbotron").addClass("jumbotron_dark");
@@ -6,6 +6,10 @@ $("#dark").click(function(){
 
 $("#normal").click(function(){
 	$(".jumbotron").removeClass("jumbotron_dark");
+	$(".jumbotron").addClass("jumbotron_light");
 });
+
+
+
 
 

@@ -1,11 +1,5 @@
 <%- include('header'); -%>
 
-<div style="margin-bottom:60px;">
-<h2> Go ahead and post your own blog right now !!! </h2>
-<a class="nav-link active  btn btn-warning" href="/submit" role="button">Compose</a>
-</div>
-
-
 <div style="width:100%">
 <% usersWithMessage.forEach(function(id){ %>
 
@@ -16,18 +10,14 @@
 
          <h1 id="h1"><%=element.title %></h1>
          <h3 id="h3"><%=element.date %></h3>
-         <p style="color:black"><%=element.message.substring(0,150) %>  
-         <a href="/posts/<%= element.title %>" > read more </a>
+         <p style="color:white"><%=element.message.substring(0,150) %>  
+         <a href="/posts/<%= element.title %>" > read more in new window </a>
          </p>
           <h2 id="h2">By: <%= id.profile.uname %> </h2>
-       
+
         </div> 
-   <%})%>
-     
-
-<%})%>
-
-  </div>
-
+    <%})%>
+  <%})%>
+</div>
 
 <%- include('footer'); -%>

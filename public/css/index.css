@@ -4,6 +4,7 @@
 }
 
 #recognize{
+	
 	color:red;
 }
 #sub{
@@ -45,7 +46,11 @@ h2{
     margin-bottom: 20px;
 }
 
-
+#navbarDropdown{
+	margin-top: 20px;
+	color:black;
+	font-size: 30px;
+}
 
 .nav-item{
 	margin-right: 10px;
@@ -54,7 +59,7 @@ h2{
 
 .navbar-brand{
 	font-size: 40px;
-	margin-right:35%;
+	margin-right:55%;
 	margin-left: 5%;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -64,12 +69,20 @@ h2{
 	color:red;
 }
 
-#head_span{
+<!--#head_span{
 	font-weight: bold;
 	color:#ffc7c7;
 	margin-left:2px;
 	-webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
+}-->
+
+#head_span_2{
+    font-family: 'Sacramento', cursive;
+   background: linear-gradient(to right, red, purple); 
+            -webkit-text-fill-color: transparent; 
+            -webkit-background-clip: text;
+     font-weight:900;        
 }
 
 #navigation{
@@ -103,6 +116,8 @@ h2{
 
 .jumbotron{
 	background-color: white;
+background-image: url("https://www.transparenttextures.com/patterns/diagonal-striped-brick.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto; 
@@ -110,6 +125,14 @@ h2{
 	padding-top: 20px;
 }
 
+.jumbotron_light{
+	background-color: white;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-bottom: 0px;
+	padding-top: 20px;
+}
 .jumbotron_dark{
 	background-color: grey;
 	width: 100%;
@@ -160,11 +183,11 @@ h2{
 	margin-right: auto;
 	margin-left: auto;
 	color:gold;
-	-webkit-text-stroke-width: 1.5px;
+	-webkit-text-stroke-width: .5px;
   -webkit-text-stroke-color: black;
 }
 #h2{
-	color:black;
+	color:#ffc7c7;
 	float:left;
 	font-size: 25px;
 	font-family: cambria;
@@ -172,7 +195,7 @@ h2{
 }
 #h3{
 	font-size: 20px;
-	color:red;
+	color:orange;
 }
 
 .credentials{
@@ -197,7 +220,7 @@ h2{
   box-shadow: 10px 5px 20px #000000;
   border: 2px solid;
   margin-bottom: 0px;
-  background-color:#cceaab; <!--#b6eb7a-->
+  background-color:#ffc7c7; <!--#b6eb7a-->
 }
 #ta1{
 	width: 100%;
@@ -206,7 +229,7 @@ h2{
 	font-size: 15px;
 	box-shadow: 10px 5px 20px #000000;
 	border: 2px solid;
-	background-color:#cceaab; <!--#b6eb7a-->
+	background-color:#ffc7c7; <!--#b6eb7a-->
 }
 
 .drop{
@@ -286,7 +309,13 @@ h2{
 	margin-top: 2%;
 }
 
-
+.message0{
+	padding:60px 30px;
+	margin:30px auto;
+	width:70%;
+	background-color: black;
+	border-radius: 15px;
+}
 .message{
 	border-radius:15px;
 	border-top:8px solid purple;
@@ -296,7 +325,6 @@ h2{
 	margin-top: 30px;
 	background-color: #ffc7c7; <!--#a8df85-->;<!--#ee91bc-->;
 	<!--box-shadow: -15px -15px 30px #000000;-->
-
 }
 .message1{
 	width: 100%;
@@ -309,10 +337,9 @@ h2{
 }
 .message2{
 	width: 100%;
-	border-top: 5px solid purple;
 	padding: 20px;
-	padding-bottom:40px;
-	background-color:#ffc7c7;  <!--#ffcac2-->
+	padding-bottom:50px;
+	background-color:black;  <!--#ffcac2-->
 	box-shadow: -15px -15px 20px #000000;
 	margin: 15px auto;
     position: relative;
@@ -390,11 +417,25 @@ h5{
 	margin-bottom:100px;
     background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
 	position:relative;
+	border-radius: 10px ;
 }
 
+.accordion{
+	border-radius: 25;
+	width:70%;
+	text-align: center;
+	margin:auto;
+}
 
+.card-header{
+	background-color:#ffc7c7;
+}
 
 @media only screen and (max-width: 600px) {
+.navbar-brand{
+	margin-right:1%;
+}
+
  #form-settings{
 	margin-right: auto;
 	margin-left: auto;
@@ -402,6 +443,9 @@ h5{
 }
 h1{
 	font-size: 200%;
+}
+.message0{
+	width:100%;
 }
 .message2{
     border-radius: 10px;
@@ -437,11 +481,8 @@ h1{
 	width:10%;
 }
 
-#navigation{
-	
+#navigation{	
 	border-top: 1px solid black;
-	border-bottom: 3px solid black;
-	
 }
 .navbar-brand{
 	font-size: 40px;
@@ -468,25 +509,36 @@ h1{
 	margin-bottom: 5%;
 }
 
+.accordion{
+	width:100%;
+	margin-top: 30px;
+}
 
 }
 
 .abt-div{
+	width:100%;
 	margin-bottom:20px;
-	padding:20px 30px;
+	padding:50px 30px;
 	padding-bottom: 60px; 
+	background-color: black;
+		border-radius: 10px ;
 }
 .abt-div p{
 	margin-top: 30px;
 	font-size:20px;
+	color:white;
 
+}
+.abt-div h1{
+	color:gold;
 }
 .abt-img{
 	border-radius: 50%;
 	float:left;
 	margin-right:20px;
 	margin-bottom: 10px;
-	border:3px solid black;
+	border:3px solid gold;
 	width:90%;
 }
 
@@ -495,10 +547,33 @@ h1{
  h1{
 	font-size: 200%;
 }
+.message0{
+	width:100%;
+}
 .message{
 	width: 100%;
 }
 .message img{
 	width: 30%;
 }
+.accordion{
+	width:100%;
 }
+}
+
+
+
+
+.caro-img{
+	width:30%;
+	text-align: center;
+	border-radius: 50%;
+	margin: 10px auto;
+	border:3px solid gold;
+}
+.carousel p{
+	text-align: center;
+	color:white;
+}
+
+

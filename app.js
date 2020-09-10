@@ -1,5 +1,4 @@
 
-//jshint esversion:6
 require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -17,6 +16,9 @@ var uuid = require('uuid-random');
 var fs = require('fs'); 
 var path = require('path'); 
 var multer = require('multer'); 
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+
   
 
 const app = express();
@@ -37,33 +39,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-////////////////////////// image upload //////////////////////////////////////////////////////////
-
-/*var storage = multer.diskStorage({ 
-    destination: (req, file, cb) => { 
-        cb(null, 'public/uploads') 
-    }, 
-    filename: (req, file, cb) => { 
-        cb(null, file.fieldname + '-' + Date.now()) 
-    } 
-}); 
-  
-var upload = multer({ storage: storage });*/
-
-///////////////////////// image upload youtube video //////////////////////////////////////////////////////////
-
-
-
-var storage = multer.diskStorage({ 
-    destination:"./public/uploads/",
-    filename: (req, file, cb) => { 
-        cb(null, file.fieldname + '-' + Date.now())
-    } 
-}); 
-  
-var upload = multer({ 
-  storage: storage
-   }).single('file');
 
 
 /////////////////////////  date ///////////////////////////////////////////////////////////////////
@@ -71,49 +46,59 @@ var today = new Date();
          var dd = String(today.getDate()).padStart(2, '0');
          var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
          var yyyy = today.getFullYear();
-        // var time=today.getHours() + ":" + today.getMinutes()
+         var time=today.getHours() + ":" + today.getMinutes()
 
-        today = dd + '/' + mm + '/' + yyyy
+        today = dd + '/' + mm + '/' + yyyy + "" +"-"+ "" + time;
 
-///var temp set global var (weather API)
-var temp="";
-var city="";
-var feels_like="";
-var humidity="";
 
 //mongoose connection 
-mongoose.connect('mongodb://localhost:27017/MyBlogs', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
-//mongodb+srv://admin-vinayak:WsUMgGzGLW75QVuR@cluster0-xgcqw.mongodb.net/
+const mongoURI='mongodb://localhost:27017/blogs';
+
+const conn = mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+//mongodb://localhost:27017/
+//mongodb+srv://admin-vinayak:WsUMgGzGLW75QVuR@cluster0-xgcqw.mongodb.net/myblog
+
 //creating the schema
 const userSchema = new mongoose.Schema({
   
- username:String,
- password:String,
+ username:{
+   type: String,
+   requied: true,
+   unique: true,
+   minlength:12,
+   maxlength:25
+},
+ password:{
+   type: String,
+   requied: true,
+   minlength:8,
+   maxlength:12
+},
+
  googleId:String,
  facebookId:String,
  blog:[Object],
  profile:{
   uname:{
     type:String,
-    default:"user"
+    default:"user",
+    unique: true,
+    maxlength:20
   },
   insta:{
     type:String,
+     unique: true,
     default:""
   },
   fb:{
     type:String,
+     unique: true,
     default:""
-  },
-  img:String
-  /*image: 
-    { 
-        data: Buffer, 
-        contentType: String 
-    }*/ 
+  } 
  }
 });  
 
+//Schema plugins
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
@@ -163,23 +148,59 @@ passport.use(new FacebookStrategy({
 ));
 
 
+///////////////////////////////////// GridFs Storage code in this section /////////////////////////////////////////////
+
+// let gfs;
+
+// conn.once('open', () => {
+//   // Init stream
+//   gfs = Grid(conn.db, mongoose.mongo);
+//   gfs.collection('User');
+// });
+
+// // Create storage engine
+// const storage = new GridFsStorage({
+//   url: mongoURI,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       crypto.randomBytes(16, (err, buf) => {
+//         if (err) {
+//           return reject(err);
+//         }
+//         const filename = buf.toString('hex') + path.extname(file.originalname);
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: 'User' // Should match the collection name
+//         };
+//         resolve(fileInfo);
+//       });
+//     });
+//   }
+// });
+// const upload = multer({ storage });
+
+
+
+
 //////////////////////////////////////////////////////////////////////// get requests //////////////////////////////////////////////////////////////////////
 
 
 
 app.get("/",function(req,res){
   res.render("home");
-  //,{temp:temp, city:city, feels_like:feels_like, humidity:humidity }
 })
 
 
 
 app.get("/settings",function(req,res){
   if(req.isAuthenticated()){
-
+        var count=0;
      User.findById({_id:req.user._id},function(err,found){
+      for(var i=0; i<found.blog.length; i++){
+        count=count+1;
+      }
       if(!err){
-         res.render("settings", {name:_.upperCase(found.profile.uname),found:found });
+         res.render("settings", {name:_.upperCase(found.profile.uname),found:found,count:count });
       }
     })
       
@@ -198,13 +219,7 @@ app.get("/about_us",function(req,res){
   res.render("about_us");
 })
 
-/*app.get("/profile",function(req,res){
-  if(req.isAuthenticated()){
-    res.render("profile");
-  }else{
-    res.redirect("/login");
-  }
-})*/
+
 
 app.get("/auth/google",
   passport.authenticate('google', { scope: ["profile"] })
@@ -283,30 +298,7 @@ app.get("/warning_blog_delete",function(req,res){
   res.render("warning_blog_delete");
 })
 
-//////////////////////////////////////////////////////////////////////////////////// post requests //////////////////////////////////////////////////////////
-
-
-/*app.post("/",function(req,res){
- cityname=req.body.cityname;
-
-  https.get("https://api.openweathermap.org/data/2.5/weather?q="+ cityname +"&appid=process.env.WEATHER_API&units=metric",function(response){
-          response.on("data",function(data){
-            const a=JSON.parse(data);
-            console.log(a);
-            temp=a.main.temp;
-            city=a.name;
-            feels_like=a.main.feels_like;
-            humidity=a.main.humidity;
-            
-            //var icon=a.weather[0].icon;
-           // var imgUrl="http://api.openweathermap.org/img/wn/"+icon+"@2x.png";
-
-            res.render("home",{temp:temp, city:city, feels_like:feels_like, humidity:humidity });
-        })
-          
-   })
-  
-})*/
+////////////////////////////////////// post requests ///////////////////////////////////////////////////////////////////
 
 app.post("/submit",function(req,res){
     
@@ -319,7 +311,9 @@ app.post("/submit",function(req,res){
 					title:req.body.title,
 					message:req.body.message,
 					date:today,
-          blog_id:uuid() 
+          blog_id:uuid() ,
+          likes:0,
+          dislikes:0
 				});
 
 
@@ -340,39 +334,17 @@ app.post("/submit",function(req,res){
 
 app.post("/signup",function(req,res){
 
-/*var user= new User({
-   fullname:req.body.fullname,
-    username:req.body.username,
-    password:req.body.password
-});
-
-user.save(function(err){
-  if(!err){
-    res.redirect("/");
-  }else{
-    res.render("faliure",{faliure:err});
-  }
-});*/
-
 	User.register({username: req.body.username}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
       res.render("faliure",{faliure:err} );
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/");
+           res.redirect("/");
       });
     }
-
-
-  
-
-  });
-
-
-
 });
-
+});
 
 
 
@@ -397,7 +369,6 @@ app.post('/login',function(req,res){
 	})
 
 });
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -431,7 +402,7 @@ app.get("/posts/:parameter",function(req,res){
 })
 
 
-//////////////////////////////////////////////////////////// Settings(Update & Delete + profile+ MyBlogs) /////////////////////////////////////////////////////////////////
+/////////////////////////////////////////// Settings(Update & Delete + profile+ MyBlogs) /////////////////////////////////////////////////////////////////
 
 
 app.post("/settings/update",function(req,res){
@@ -448,58 +419,15 @@ app.post("/settings/update",function(req,res){
 
 })
 
-// PHOTO UPLOAD
 
-/*app.post('/settings/profile', upload.single('image'), (req, res, next) => { 
 
-User.findById({_id: req.user._id},function(err,found){ 
+app.post("/settings/profile" ,function(req,res){
+
+ User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false,useFindAndModify:false},function(err){ 
       if(!err){
-        found.profile= { 
-        uname: req.body.uname, 
-        insta: req.body.insta, 
-        fb:req.body.fb,
-        image: { 
-            data: fs.readFileSync(path.join(__dirname + '/public/uploads/' + req.body.image)), 
-            contentType: 'image/png'
-        } 
-    } 
-
-
-    found.save(function(err){
-      if(!err){
-         res.render("success",{success:"Your profile is set/updated successfully !!! "});
-      }
-    })
-      }else{
-        res.render("faliure",{faliure:err});
+        res.render("success",{success:"Your profile is set/updated successfully !!! "})
       }
   }); 
-
-}); */
-
-
-app.post("/settings/profile",function(req,res){
-
-/* User.findByIdAndUpdate({_id: req.user._id},{$set:{profile:req.body}},{overwrite:false,useFindAndModify:false},function(err){ 
-      if(!err){
-        res.render("success",{success:"Your profile is set/updated successfully !!! "})
-      }
-  }); */
-
- User.findById({_id: req.user._id},function(err,found){
-  console.log(req.body);
-       found.profile={
-          uname:req.body.uname,
-          insta:req.body.insta,
-          fb:req.body.fb,
-          img:fs.readFileSync(req.body.image)
-       };
-       found.save(function(err){
-         if(!err){
-        res.render("success",{success:"Your profile is set/updated successfully !!! "})
-        }
-       })
- });
 
 })
 
@@ -560,8 +488,8 @@ User.findById({_id:req.user._id},function(err,found){
   if(!err){
    found.blog.forEach(function(x){
     if(x.blog_id===req.body.blog_id){
-      var title=x.title;
-      var message=_.lowerCase(x.message);
+      var title=_.lowerCase(x.title);
+      var message=x.message;
       res.render("submit_update",{title:title, message:message, id:x.blog_id, today:today});
     }
    })
@@ -575,34 +503,33 @@ app.post("/settings/myblog/update/final",function(req,res){
 
  User.findById({_id:req.user._id},function(err,found){
   if(!err){
-    var x="";
+    //var x="";
     found.blog.forEach(function(x){
     if(x.blog_id===req.body.blog_id){
       //x=req.body;
 
-  User.updateOne({_id:req.user._id},{$set:{ x:req.body}},function(err){
+  /*User.updateOne({_id:req.user._id},{$set:{ x:req.body}},function(err){
   if(!err){
     res.redirect("/settings/my_blogs");
   }else{
           res.render("faliure",{faliure:err})
         }
- })
+ })*/
+         x.title=req.body.title;
+         x.message=req.body.message;
 
-    }
-    });
-
- 
-     
-   /*found.save({overwrite:true},function(err){
+         found.save(function(err){
         if(!err){
           res.redirect("/settings/my_blogs");
         }else{
           res.render("faliure",{faliure:err})
         }
-      })*/
+      });
+          
+    }
+    });
 
-  
-  }
+    }
  })
 })
 
@@ -610,6 +537,6 @@ app.post("/settings/myblog/update/final",function(req,res){
 
 ///////////////////////////////////////////////////////////// server port /////////////////////////////////////////////////////////////////////////////////// 
 
-app.listen(  3000, function(){
-	console.log("server up and running on port 3000 you can now perform your activities server is always ready to help you !!!");
+app.listen(3000, function(){
+	console.log("server up and running on port 3000");
 })
